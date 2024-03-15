@@ -1,0 +1,46 @@
+/*--1.1
+create a database-edu_institute*/
+CREATE DATABASE edu_institute;
+
+/*--1.2 
+create a table named students*/
+USE edu_institute;
+CREATE TABLE  students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    gender CHAR(1),
+    enrollment_date DATE,
+    program VARCHAR(50)
+);
+
+
+/*--2.1
+Insert data to the table*/
+INSERT INTO students (student_id, name, age, gender, enrollment_date, program) VALUES
+(1, 'Pauline Adhiambo', 25, 'F', '2022-01-15', 'Computer Science'),
+(2, 'John Brian', 22, 'M', '2022-02-20', 'System Administration'),
+(3, 'Ann Mupa', 23, 'F', '2022-03-10', 'Data Science'),
+(4, 'Emily Yelbert', 21, 'F', '2022-04-05', 'Data Protection'),
+(5, 'Daniel Mboi', 24, 'M', '2022-05-12', 'Artificial Intelligence');
+
+
+-- 3.1 Select all columns for students in "Data Science" program
+SELECT * FROM students WHERE program = 'Data Science';
+
+-- 3.2 Find the total number of students
+SELECT COUNT(*) AS Total_Students FROM students;
+
+
+-- 4.1 Display the current date in a column named Today's Date
+SELECT CURRENT_DATE  AS "Today's Date";
+
+-- 4.2 Select the student names,their enrolment dates and display the name column in uppercase
+SELECT UPPER(name) AS Student_Name, enrollment_date FROM students;
+
+
+-- 5.1 Count the number of students in each program.Display results in descending order of count
+SELECT program, COUNT(*) AS Number_of_Students FROM students GROUP BY program ORDER BY Number_of_Students DESC;
+
+-- 5.2 Find the youngest student's name and age
+SELECT name AS Youngest_Student_Name, age AS Youngest_Student_Age FROM students ORDER BY age ASC LIMIT 1;
